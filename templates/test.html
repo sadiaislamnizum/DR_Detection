@@ -61,6 +61,7 @@
 const imageInput = document.getElementById("imageInput");
 const preview = document.getElementById("preview");
 const dropzone = document.getElementById("dropzone");
+const fileName = document.getElementById("fileName");
 
 function showPreview(file){
     if(!file) return;
@@ -68,7 +69,9 @@ function showPreview(file){
     preview.style.display = "block";
 }
 
-imageInput.addEventListener("change", (e) => showPreview(e.target.files[0]));
+    
+
+
 
 ["dragenter","dragover"].forEach(evt =>
     dropzone.addEventListener(evt, (e) => {
