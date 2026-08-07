@@ -87,7 +87,12 @@ def prepare_image(path):
 def home():
     return render_template("test.html")
 
-
+@app.route("/how_it_works")
+def how_it_works():
+    return render_template(
+        "how_it_works.html",
+        active="how"
+    )
 @app.route("/test")
 def test():
     return render_template("test.html", active="test")
