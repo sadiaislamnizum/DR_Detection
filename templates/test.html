@@ -27,14 +27,22 @@
                 <div class="dropzone-title">Upload a fundus image</div>
                 <div class="dropzone-sub">JPG or PNG — a clear, centred retinal photograph works best</div>
 
-                <input
-                    class="form-control"
-                    type="file"
-                    name="image"
-                    accept="image/*"
-                    id="imageInput"
-                    required
-                >
+<input
+    type="file"
+    id="imageInput"
+    name="image"
+    accept="image/*"
+    hidden
+    required
+>
+
+<label for="imageInput" class="custom-upload-btn">
+    📁 Choose Fundus Image
+</label>
+
+<p id="fileName" class="file-name">
+    No file selected
+</p>
 
                 <img id="preview" src="" class="img-fluid" style="max-height:280px; display:none; width:100%; object-fit:cover;">
             </div>
