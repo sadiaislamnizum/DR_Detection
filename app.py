@@ -85,7 +85,7 @@ def prepare_image(path):
 
 @app.route("/")
 def home():
-    return "<h1>Railway Working</h1>"
+    return render_template("test.html")
 
 
 @app.route("/test")
