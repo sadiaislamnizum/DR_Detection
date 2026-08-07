@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% block title %}Test — RetinaScan{% endblock %}
+
+{% block content %}
+
+<div class="analyzing-overlay" id="analyzingOverlay">
+    <div class="analyzing-ring"></div>
+    <div class="analyzing-text">Reading the fundus image…</div>
+</div>
+
+<div class="section">
+    <div class="page-header reveal">
+        <div class="eyebrow" style="justify-content:center;">Image test</div>
+        <h1>Upload a fundus photo for grading</h1>
+        <p>Add a retinal fundus photograph and the model will grade it across the five clinical stages of diabetic retinopathy, with a confidence score.</p>
+    </div>
+
+    <div class="upload-card reveal">
+        <form action="{{ url_for('predict') }}" method="POST" enctype="multipart/form-data" id="uploadForm">
+            <div class="dropzone" id="dropzone">
+                <div class="scope-ring">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
+                        <path d="M12 16v-8M8 12h8"/>
+                        <circle cx="12" cy="12" r="9.5"/>
+                    </svg>
+                </div>
+                <div class="dropzone-title">Upload a fundus image</div>
+                <div class="dropzone-sub">JPG or PNG — a clear, centred retinal photograph works best</div>
+
+                <input
+                    class="form-control"
+                    type="file"
+                    name="image"
+                    accept="image/*"
+                    id="imageInput"
+                    required
+                >
+
+                <img id="preview" src="" class="img-fluid" style="max-height:280px; display:none; width:100%; object-fit:cover;">
+            </div>
+
+            <div style="margin-top:28px;">
+                <button class="btn-primary" type="submit" style="width:100%; border:none; cursor:pointer; text-align:center;">Analyze Image</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+const imageInput = document.getElementById("imageInput");
+const preview = document.getElementById("preview");
+const dropzone = document.getElementById("dropzone");
+
+function showPreview(file){
+    if(!file) return;
+    preview.src = URL.createObjectURL(file);
+    preview.style.display = "block";
+}
+
+imageInput.addEventListener("change", (e) => showPreview(e.target.files[0]));
+
+["dragenter","dragover"].forEach(evt =>
+    dropzone.addEventListener(evt, (e) => {
+        e.preventDefault();
+        dropzone.classList.add("is-dragover");
+    })
+);
+["dragleave","drop"].forEach(evt =>
+    dropzone.addEventListener(evt, (e) => {
+        e.preventDefault();
+        dropzone.classList.remove("is-dragover");
+    })
+);
+dropzone.addEventListener("drop", (e) => {
+    const file = e.dataTransfer.files[0];
+    if(file){
+        imageInput.files = e.dataTransfer.files;
+        showPreview(file);
+    }
+});
+
+const uploadForm = document.getElementById("uploadForm");
+const overlay = document.getElementById("analyzingOverlay");
+if(uploadForm){
+    uploadForm.addEventListener("submit", () => {
+        overlay.classList.add("is-active");
+    });
+}
+</script>
+{% endblock %}

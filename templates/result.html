@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block title %}Prediction Result — RetinaScan{% endblock %}
+
+{% block content %}
+
+<div class="section">
+    <div class="result-card">
+
+        <div class="result-header">
+            <div class="brand-mark"></div>
+            <h2>Prediction Result</h2>
+        </div>
+
+        <hr style="border:none; border-top:1px solid var(--line); margin:20px 0;">
+
+        <div class="row" style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+            <div class="image-panel" style="text-align:center;">
+                <h5>Original Image</h5>
+                <img src="{{ original }}" style="max-height:280px; max-width:100%;">
+            </div>
+            <div class="image-panel" style="text-align:center;">
+                <h5>Preprocessed Image</h5>
+                <img src="{{ processed }}" style="max-height:280px; max-width:100%;">
+            </div>
+        </div>
+
+        <div class="prediction-panel">
+            <div class="prediction-eyebrow">Predicted Stage</div>
+            <div class="prediction-value">{{ prediction }}</div>
+            <div class="confidence-value">Confidence: {{ confidence }}%</div>
+            <div class="confidence-bar-track">
+                <div class="confidence-bar-fill" id="confidenceFill" data-value="{{ confidence }}"></div>
+            </div>
+        </div>
+
+        <div class="alert alert-info">
+            <h5>Disease Description</h5>
+            <p style="margin:0;">{{ description }}</p>
+        </div>
+
+        {% if prediction == "No DR" %}
+        <div class="alert alert-success" style="margin-top:14px;">
+            <b>Recommendation:</b>
+            No diabetic retinopathy detected. Maintain regular eye check-ups and blood sugar control.
+        </div>
+        {% elif prediction == "Mild" %}
+        <div class="alert alert-warning" style="margin-top:14px;">
+            <b>Recommendation:</b>
+            Mild diabetic retinopathy detected. Schedule an ophthalmology visit and continue diabetes management.
+        </div>
+        {% elif prediction == "Moderate" %}
+        <div class="alert alert-warning" style="margin-top:14px;">
+            <b>Recommendation:</b>
+            Moderate diabetic retinopathy detected. Consult an eye specialist as soon as possible.
+        </div>
+        {% elif prediction == "Severe" %}
+        <div class="alert alert-danger" style="margin-top:14px;">
+            <b>Recommendation:</b>
+            Severe diabetic retinopathy detected. Immediate specialist consultation is strongly recommended.
+        </div>
+        {% elif prediction == "Proliferative DR" %}
+        <div class="alert alert-danger" style="margin-top:14px;">
+            <b>Recommendation:</b>
+            Proliferative diabetic retinopathy detected. Urgent treatment is required to reduce the risk of vision loss.
+        </div>
+        {% endif %}
+
+        <div style="text-align:center; margin-top:32px;">
+            <a href="{{ url_for('test') }}" class="btn-primary">Analyze Another Image</a>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+    const fill = document.getElementById("confidenceFill");
+    if(fill){
+        const val = fill.dataset.value;
+        requestAnimationFrame(() => {
+            setTimeout(() => { fill.style.width = val + "%"; }, 150);
+        });
+    }
+});
+</script>
+{% endblock %}

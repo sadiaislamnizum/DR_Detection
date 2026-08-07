@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %}How it Works — RetinaScan{% endblock %}
+
+{% block content %}
+
+<div class="section">
+    <div class="page-header">
+        <h1>From photo to diagnosis-ready read.</h1>
+        <p>No manual grading, no waiting room — just a fundus photo and a clinically-mapped output you can act on.</p>
+    </div>
+</div>
+
+<div class="strip">
+    <div class="strip-inner">
+        <div><b>5</b><span>DR stages classified</span></div>
+        <div><b>224×224</b><span>model input resolution</span></div>
+        <div><b>&lt;2s</b><span>average inference time</span></div>
+        <div><b>EfficientNetB0</b><span>underlying architecture</span></div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="how reveal">
+        <div class="steps reveal-stagger">
+            <div class="step stagger-item">
+                <div class="step-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M5 20h14"/></svg></div>
+                <div class="step-num">STEP 01</div>
+                <h4>Upload a fundus photo</h4>
+                <p>Any standard retinal camera image, uploaded directly from your device — JPG or PNG.</p>
+            </div>
+            <div class="step stagger-item">
+                <div class="step-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.5"/><path d="M12 3v2.5M12 18.5V21M3 12h2.5M18.5 12H21M5.6 5.6l1.8 1.8M16.6 16.6l1.8 1.8M5.6 18.4l1.8-1.8M16.6 7.4l1.8-1.8"/></svg></div>
+                <div class="step-num">STEP 02</div>
+                <h4>Retina is isolated</h4>
+                <p>The image is cropped to the retina and contrast-enhanced with CLAHE before grading.</p>
+            </div>
+            <div class="step stagger-item">
+                <div class="step-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg></div>
+                <div class="step-num">STEP 03</div>
+                <h4>Stage &amp; confidence</h4>
+                <p>An EfficientNetB0 model returns a DR stage with a confidence percentage and next steps.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="stages">
+        <div class="stages-card reveal">
+            <div>
+                <h2>Mapped to all five clinical DR stages.</h2>
+                <p>Each read lands on one of the five recognised stages of diabetic retinopathy, so the result speaks the same language as your ophthalmologist.</p>
+            </div>
+            <div class="stage-list">
+                <div class="stage-item"><span class="name"><span class="dot" style="background:#3DDC97"></span>No DR</span><div class="bar-track"><div class="bar-fill" style="--fill:20%;background:#3DDC97"></div></div>20%</div>
+                <div class="stage-item"><span class="name"><span class="dot" style="background:#9FE0D6"></span>Mild</span><div class="bar-track"><div class="bar-fill" style="--fill:40%;background:#9FE0D6"></div></div>40%</div>
+                <div class="stage-item"><span class="name"><span class="dot" style="background:#C9862B"></span>Moderate</span><div class="bar-track"><div class="bar-fill" style="--fill:60%;background:#C9862B"></div></div>60%</div>
+                <div class="stage-item"><span class="name"><span class="dot" style="background:#E8654A"></span>Severe</span><div class="bar-track"><div class="bar-fill" style="--fill:80%;background:#E8654A"></div></div>80%</div>
+                <div class="stage-item"><span class="name"><span class="dot" style="background:#D63B3B"></span>Proliferative DR</span><div class="bar-track"><div class="bar-fill" style="--fill:100%;background:#D63B3B"></div></div>100%</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="cta">
+        <div class="cta-card reveal">
+            <h2>Ready to read a retina?</h2>
+            <p>Upload a fundus photograph and get a clinical-stage result in under two seconds.</p>
+            <div class="cta-actions">
+                <a class="btn-primary" href="{{ url_for('test') }}">Start a Test</a>
+                <a class="btn-ghost" href="{{ url_for('team') }}">Meet the Team</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

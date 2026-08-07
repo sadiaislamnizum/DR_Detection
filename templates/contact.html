@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Contact — RetinaScan{% endblock %}
+
+{% block content %}
+
+<div class="section">
+    <div class="page-header reveal">
+        <div class="eyebrow" style="justify-content:center;">Get in touch</div>
+        <h1>Contact info</h1>
+        <p>Questions about the project, the model, or a collaboration? Reach out through any of the channels below.</p>
+    </div>
+
+    <div class="contact-grid reveal-stagger">
+        <div class="contact-card stagger-item">
+            <div class="icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z" opacity="0"/><path d="M3 6l9 7 9-7"/><path d="M3 6h18v12H3z"/></svg>
+            </div>
+            <h4>Email</h4>
+            <p><a href="mailto:contact@retinascan.example">contact@retinascan.example</a></p>
+        </div>
+        <div class="contact-card stagger-item">
+            <div class="icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <h4>Phone</h4>
+            <p><a href="tel:+8800000000">+880 00-000-0000</a></p>
+        </div>
+        <div class="contact-card stagger-item">
+            <div class="icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <h4>Location</h4>
+            <p>Dept. of Software Engineering<br>Daffodil International University, Dhaka</p>
+        </div>
+        <div class="contact-card stagger-item">
+            <div class="icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h4>Team</h4>
+            <p>Farhan Tanvir · Sadia Islam Nizum · Sajib Sarker — <a href="{{ url_for('team') }}">see full team</a></p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

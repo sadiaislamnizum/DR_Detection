@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block title %}RetinaScan — Diabetic Retinopathy Detection{% endblock %}
+
+{% block content %}
+
+<div class="section">
+    <div class="hero-centered">
+        <div class="eyebrow">Clinical-grade screening</div>
+        <h1>Grade diabetic retinopathy from a single fundus photo, <span class="accent">instantly</span>.</h1>
+        <p class="lead">Upload a retinal fundus photograph and get a clinical-stage read — from No DR to Proliferative DR — with a confidence score, in seconds.</p>
+
+        <div class="hero-card" id="eyeWrap">
+            <div class="eye-wrap">
+                <svg class="eye-illustration" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <radialGradient id="irisGrad" cx="50%" cy="45%" r="60%">
+                            <stop offset="0%" stop-color="#7B8CFF"/>
+                            <stop offset="65%" stop-color="#4C5DFF"/>
+                            <stop offset="100%" stop-color="#121319"/>
+                        </radialGradient>
+                        <clipPath id="eyeClip"><circle cx="200" cy="200" r="78"/></clipPath>
+                    </defs>
+                    <g class="eye-reticle" stroke="#C7D0DC" stroke-width="1" fill="none">
+                        <circle cx="200" cy="200" r="150" stroke-dasharray="2 10"/>
+                        <circle cx="200" cy="200" r="130"/>
+                        <line x1="200" y1="35" x2="200" y2="55"/>
+                        <line x1="200" y1="345" x2="200" y2="365"/>
+                        <line x1="35" y1="200" x2="55" y2="200"/>
+                        <line x1="345" y1="200" x2="365" y2="200"/>
+                    </g>
+                    <circle cx="200" cy="200" r="95" fill="#FFFFFF" stroke="#DDE2E8" stroke-width="2"/>
+                    <g>
+                        <circle cx="200" cy="200" r="78" fill="url(#irisGrad)"/>
+                        <circle cx="200" cy="200" r="30" fill="#121319"/>
+                        <circle cx="190" cy="188" r="8" fill="#ffffff" opacity=".55"/>
+                    </g>
+                    <g clip-path="url(#eyeClip)">
+                        <rect class="eye-scanline" x="122" y="197" width="156" height="3" fill="#4C5DFF" opacity=".85"/>
+                    </g>
+                </svg>
+            </div>
+            <a class="btn-primary" href="{{ url_for('test') }}">↑ Start a Test</a>
+            <div>
+                <div style="font-weight:700; font-size:15px; color:var(--navy);">Upload a fundus photo</div>
+                <div style="color:var(--muted); font-size:13.5px; margin-top:4px;">or drag it in — JPG or PNG</div>
+            </div>
+        </div>
+
+        <div class="trust-row">
+            <div class="avatars">
+                <span><img src="{{ url_for('static', filename='team/farhan.png') }}" alt=""></span>
+                <span><img src="{{ url_for('static', filename='team/sadia.png') }}" alt=""></span>
+                <span><img src="{{ url_for('static', filename='team/sajib.png') }}" alt=""></span>
+            </div>
+            <small>Built by the Software Engineering team at Daffodil International University</small>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+/* Hero parallax tilt */
+const eyeWrap = document.getElementById("eyeWrap");
+if (eyeWrap) {
+    document.addEventListener("mousemove", (e) => {
+        const x = (e.clientX / window.innerWidth - 0.5) * 6;
+        const y = (e.clientY / window.innerHeight - 0.5) * 6;
+        eyeWrap.style.transform = `rotateY(${x}deg) rotateX(${-y}deg)`;
+    });
+}
+</script>
+{% endblock %}

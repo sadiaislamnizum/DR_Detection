@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Team — RetinaScan{% endblock %}
+
+{% block content %}
+
+<div class="section">
+    <div class="page-header reveal">
+        <div class="eyebrow" style="justify-content:center;">Built by</div>
+        <h1>The team behind RetinaScan</h1>
+        <p>Three Software Engineering students at Daffodil International University, working on automated diabetic retinopathy screening.</p>
+    </div>
+
+    <div class="team-page-grid reveal-stagger">
+        <div class="team-page-card stagger-item">
+            <div class="team-page-photo"><img src="{{ url_for('static', filename='team/farhan.png') }}" alt="Farhan Tanvir"></div>
+            <div class="team-page-name">Farhan Tanvir</div>
+            <div class="team-page-role">Software Engineering</div>
+            <p class="team-page-bio">Worked on model integration and the Flask application powering RetinaScan.</p>
+        </div>
+        <div class="team-page-card stagger-item">
+            <div class="team-page-photo"><img src="{{ url_for('static', filename='team/sadia.png') }}" alt="Sadia Islam Nizum"></div>
+            <div class="team-page-name">Sadia Islam Nizum</div>
+            <div class="team-page-role">Software Engineering</div>
+            <p class="team-page-bio">Focused on data preprocessing and model training for DR stage classification.</p>
+        </div>
+        <div class="team-page-card stagger-item">
+            <div class="team-page-photo"><img src="{{ url_for('static', filename='team/sajib.png') }}" alt="Sajib Sarker"></div>
+            <div class="team-page-name">Sajib Sarker</div>
+            <div class="team-page-role">Software Engineering</div>
+            <p class="team-page-bio">Led the interface design and overall product experience for RetinaScan.</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
