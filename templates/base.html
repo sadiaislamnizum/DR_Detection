@@ -23,14 +23,18 @@
     <a class="brand" href="{{ url_for('home') }}">
         <div class="brand-mark"></div>RetinaScan
     </a>
-    <div class="nav-links">
+    <div class="nav-links" id="navLinks">
         <a href="{{ url_for('home') }}" class="{{ 'active' if active == 'home' else '' }}">Home</a>
         <a href="{{ url_for('how_it_works') }}" class="{{ 'active' if active == 'how' else '' }}">How it works</a>
         <a href="{{ url_for('test') }}" class="{{ 'active' if active == 'test' else '' }}">Test</a>
         <a href="{{ url_for('team') }}" class="{{ 'active' if active == 'team' else '' }}">Team</a>
         <a href="{{ url_for('contact') }}" class="{{ 'active' if active == 'contact' else '' }}">Contact Info</a>
+        <a class="nav-cta nav-cta-mobile" href="{{ url_for('test') }}">Run a Test →</a>
     </div>
-    <a class="nav-cta" href="{{ url_for('test') }}">Run a Test →</a>
+    <a class="nav-cta nav-cta-desktop" href="{{ url_for('test') }}">Run a Test →</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+    </button>
 </div>
 
 {% block content %}{% endblock %}
@@ -45,6 +49,26 @@
 </div>
 
 <script>
+/* Mobile nav toggle — shared across all pages */
+const navToggle = document.getElementById("navToggle");
+const navLinks = document.getElementById("navLinks");
+if (navToggle && navLinks) {
+    navToggle.addEventListener("click", () => {
+        const isOpen = navLinks.classList.toggle("is-open");
+        navToggle.classList.toggle("is-active", isOpen);
+        navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+        document.body.classList.toggle("nav-open", isOpen);
+    });
+    navLinks.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+            navLinks.classList.remove("is-open");
+            navToggle.classList.remove("is-active");
+            navToggle.setAttribute("aria-expanded", "false");
+            document.body.classList.remove("nav-open");
+        });
+    });
+}
+
 /* Scroll reveal — shared across all pages */
 const revealTargets = document.querySelectorAll(".reveal, .reveal-stagger");
 const io = new IntersectionObserver((entries) => {
