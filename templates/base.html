@@ -29,8 +29,14 @@
         <a href="{{ url_for('test') }}" class="{{ 'active' if active == 'test' else '' }}">Test</a>
         <a href="{{ url_for('team') }}" class="{{ 'active' if active == 'team' else '' }}">Team</a>
         <a href="{{ url_for('contact') }}" class="{{ 'active' if active == 'contact' else '' }}">Contact Info</a>
-        <a class="nav-cta nav-cta-mobile" href="{{ url_for('test') }}">Run a Test →</a>
     </div>
+    <div class="nav-right">
+        <a class="nav-cta" href="{{ url_for('test') }}">Run a Test →</a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</div>
     <a class="nav-cta nav-cta-desktop" href="{{ url_for('test') }}">Run a Test →</a>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
         <span></span><span></span><span></span>
