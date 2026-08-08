@@ -11,16 +11,20 @@
             <h2>Prediction Result</h2>
         </div>
 
-        <hr style="border:none; border-top:1px solid var(--line); margin:20px 0;">
+        <hr class="result-divider">
 
-        <div class="row" style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
-            <div class="image-panel" style="text-align:center;">
-                <h5>Original Image</h5>
-                <img src="{{ original }}" style="max-height:280px; max-width:100%;">
+        <div class="image-compare">
+            <div class="image-panel">
+                <span class="image-panel-tag">Original</span>
+                <div class="image-frame">
+                    <img src="{{ original }}" alt="Original retinal image">
+                </div>
             </div>
-            <div class="image-panel" style="text-align:center;">
-                <h5>Preprocessed Image</h5>
-                <img src="{{ processed }}" style="max-height:280px; max-width:100%;">
+            <div class="image-panel">
+                <span class="image-panel-tag image-panel-tag-alt">Preprocessed</span>
+                <div class="image-frame">
+                    <img src="{{ processed }}" alt="Preprocessed retinal image">
+                </div>
             </div>
         </div>
 
